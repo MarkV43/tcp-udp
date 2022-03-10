@@ -1,9 +1,3 @@
-<style media="(prefers-color-scheme:dark)">
-	img {
-		filter: invert(1);
-	}
-</style>
-
 # Trabalho TCP e UDP
 
 Um trabalho para a disciplina de _Redes de Computadores para Automação_ desenvolvido por Ícaro Bedôr Cavalcante e Marcelo Vogt.
