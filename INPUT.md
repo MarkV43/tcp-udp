@@ -1,9 +1,17 @@
+<!---
+	To compile the LaTeX in this file to README.md, one must run the commands
+	`python -m readme2tex --output README.md INPUT.md --nocdn`
+	`python fix-svg-color.py`
+
+	To install the first tool you must run
+	`pip install readme2tex`
+-->
+
 # Trabalho TCP e UDP
 
 Um trabalho para a disciplina de _Redes de Computadores para Automação_ desenvolvido por Ícaro Bedôr Cavalcante e Marcelo Vogt.
 
 ## Definição
----
 
 O trabalho, implementado em Python, consiste de 2 estações (um controlador e um painel de controle) que comunicam entre si.
 O painel de controle envia através de TCP dados para alteração de parâmetros de controle no controlador.
@@ -11,7 +19,6 @@ O controlador consiste de um simulador de um processo (dado que não temos o sis
 O painel de controle, sendo atualizado disso, apresenta visualmente, tanto uma representação fiel do sistema, quanto em forma de gráficos, ao usuário, esses dados.
 
 ## O processo
----
 
 O processo físico consiste de uma ponte rolante uniaxial.
 
@@ -19,7 +26,6 @@ $$ m \ell^2 \ddot \theta = -m \ddot x_v \ell \cos \theta - m g \ell \sin \theta 
 $$ (M + m) \ddot x_v = m \dot\theta^2 \ell \sin \theta - m \ddot\theta \ell \cos \theta + F(t) - d\dot x_v $$
 
 ### Simbologia
----
 
 $m$ Massa da carga $\leq 5000$ Kg
 
