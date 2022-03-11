@@ -13,10 +13,11 @@ Um trabalho para a disciplina de _Redes de Computadores para Automação_ desenv
 
 ## Definição
 
-O trabalho, implementado em Python, consiste de 2 estações (um controlador e um painel de controle) que comunicam entre si.
-O painel de controle envia através de TCP dados para alteração de parâmetros de controle no controlador.
-O controlador consiste de um simulador de um processo (dado que não temos o sistema físico em si) e de um sistema de controle discreto que interage dado processo, enviando o estado atual ao painel de controle via UDP.
-O painel de controle, sendo atualizado disso, apresenta visualmente, tanto uma representação fiel do sistema, quanto em forma de gráficos, ao usuário, esses dados.
+O trabalho, implementado em Python, consiste de 3 estações (um simulador, um controlador e um painel de controle) que comunicam entre si.
+O painel de controle envia através de TCP, dados para alteração de parâmetros de controle no controlador.
+O controlador consiste de um sistema de controle discreto que interage com o simulador via UDP, enviando o estado atual ao painel de controle.
+O painel de controle, sendo atualizado disso, apresenta visualmente em forma de gráficos, ao usuário, esses dados.
+O simulador mostra uma representação fiel do sistema real ao usuário.
 
 ## O processo
 
@@ -48,3 +49,5 @@ $d$ Coeficiente de atrito com o eixo de deslocamento $\approx 100$
 $\dot f$ Primeira derivada de $f$ no tempo
 
 $\ddot f$ Segunda derivada de $f$ no tempo
+
+###
