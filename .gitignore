@@ -3,4 +3,4 @@
 !.gitignore
 !fix-svg-color.py
 
-!/src/*
+!/*/*
