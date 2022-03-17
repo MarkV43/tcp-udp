@@ -1,4 +1,4 @@
-from math import sin, cos
+from math import sin, cos, pi
 import string
 from time import sleep, time as f_time
 from p5 import *
@@ -29,7 +29,8 @@ The EDOs will be defined as follows
 # Define the constants
 m = 4000 # Kg
 M = 496 # Kg
-l = 7 # m
+l = 3 # m
+path = 21 # m
 xv = 0 # m
 xv_d = 0 # m/s
 xv_dd = 0 # m/s^2
@@ -43,7 +44,7 @@ d = 100
 
 delta_time = 0.01 # s or 100 Hz
 
-terminate = False
+terminated = False
 
 def ode_generator():
 	global xv, xv_d, xv_dd, th, th_d, th_dd, F, g, b, d
@@ -51,11 +52,11 @@ def ode_generator():
 	xv = 0
 	xv_d = 0
 	xv_dd = 0
-	th = 0
+	th = pi/3
 	th_d = 0
 	th_dd = 0
 	F = 1
-
+	start = f_time()
 
 	while True:
 		# First calculate x_dd and theta_dd
@@ -74,10 +75,8 @@ def ode_generator():
 
 		yield xv, th
 
-		F = sin(f_time() / 10) * 100
 
-
-def main():
+def run():
 	# Let's create a generator
 	ode_gen = ode_generator()
 
@@ -89,55 +88,24 @@ def main():
 
 	for xv, theta in ode_gen:
 		if total >= udp_time:
-			# Show framerate
-			print(1 / (-last + (last := f_time())))
 			send_recv_udp(f"{xv};{theta}")
 			total -= udp_time
 		total += delta_time
 		sleep(delta_time)
-
-		if terminate:
+		# Show framerate
+		print(1 / (-last + (last := f_time())))
+		if terminated:
 			break
 
+def terminate():
+	global terminated
+	terminated = True
 
-def setup():
-	size(640, 360)
-	fill(255)
-	no_stroke()
+def get_xv():
+	return xv
 
-	global thread
-	thread = threading.Thread(target=main)
-	thread.start()
-	# threading.start_new_thread(main, ())
+def get_th():
+	return th
 
-
-def draw():
-	background(0)
-	translate(width/2, height/2)
-	scale(100/7)
-
-	global xv, th
-
-	# Draw a square at `(xv, 0)`, and a line hanging from it with angle `th`
-
-	rect_mode(CENTER)
-	ellipse_mode(CENTER)
-	square(xv, 0, 0.25)
-	rotate(f_time())
-	p_x = xv + l * sin(th)
-	p_y = xv - l * cos(th)
-	circle(p_x, p_y, 0.5)
-
-
-def exit():
-	global terminate, thread
-	terminate = True
-
-	thread.join()
-
-	sys.exit(0)
-
-
-if __name__ == '__main__':
-	p5.exit = exit
-	run()
+def get_F():
+	return F

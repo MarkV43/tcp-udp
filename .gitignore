@@ -1,5 +1,6 @@
 *.py
 .*
+*/__pycache__/*
 !.gitignore
 !fix-svg-color.py
 

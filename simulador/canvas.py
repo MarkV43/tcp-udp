@@ -1,17 +1,14 @@
 import tkinter as  tk
 
-def create_canvas(width: int, height: int) -> (tk.Canvas, ):
+def create_canvas(width: int, height: int):
 	master = tk.Tk()
 
 	w = tk.Canvas(
 			master,
 			width=width,
-			height=height
+			height=height,
+			bg='black'
 		)
 	w.pack()
 
-	w.create_line(0, y := height/2, width, y, fill="yellow")
-
-	tk.mainloop()
-
-create_canvas(800, 400)
+	return master, w, lambda: tk.mainloop()
