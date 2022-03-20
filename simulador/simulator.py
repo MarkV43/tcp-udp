@@ -5,21 +5,15 @@ from p5 import *
 import threading
 import sys
 import socket
-from socketserver import UDPServer
 
 
-ip = "127.0.0.1"
-port = 20001
-bufferSize = 1024
-serverAddressPort = (ip, port)
 
-UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-UDPClientSocket.bind(serverAddressPort)
 
 def send_recv_udp(msg: str):
-	global UDPClientSocket
-	UDPClientSocket.sendto(msg.encode(), serverAddressPort)
-	return UDPClientSocket.recvfrom(bufferSize)
+	global udp_server
+	value = float(udp_server.recvfrom(bufferSize)[0].decode())
+	udp_server.sendto(msg.encode(), (ip, port+1))
+	return value
 
 """
 Let's create a system simulation
@@ -39,8 +33,8 @@ th_d = 0 # rad/s
 th_dd = 0 # rad/s^2
 F = 0 # N
 g = 9.81 # m/s^2
-b = 100
-d = 100
+b = 1000
+d = 1000
 
 delta_time = 0.01 # s or 100 Hz
 
@@ -55,7 +49,6 @@ def ode_generator():
 	th = pi/3
 	th_d = 0
 	th_dd = 0
-	F = 1
 	start = f_time()
 
 	while True:
@@ -80,26 +73,22 @@ def run():
 	# Let's create a generator
 	ode_gen = ode_generator()
 
-	udp_frequency = 10 # Hz
-	udp_time = 1/udp_frequency # s
+
 
 	total = 0
 	last = f_time()
 
 	for xv, theta in ode_gen:
-		if total >= udp_time:
-			send_recv_udp(f"{xv};{theta}")
-			total -= udp_time
-		total += delta_time
 		sleep(delta_time)
-		# Show framerate
-		print(1 / (-last + (last := f_time())))
 		if terminated:
 			break
 
 def terminate():
 	global terminated
 	terminated = True
+
+def get_terminated():
+	return terminated
 
 def get_xv():
 	return xv
@@ -109,3 +98,7 @@ def get_th():
 
 def get_F():
 	return F
+
+def set_F(f):
+	global F
+	F = f

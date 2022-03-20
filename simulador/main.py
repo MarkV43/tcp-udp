@@ -1,7 +1,7 @@
 import tkinter as tk
+from server import run_server
 from simulator import run, get_xv, get_th, get_F, l, path, terminate
 from canvas import create_canvas
-from time import time
 from math import sin, cos
 import threading
 
@@ -27,7 +27,7 @@ def circle(canvas, c1, c2, r, **kwargs):
 def draw(parent, cvs, xv, th, l):
 	cvs.delete("all")
 	line(cvs, -path/2, 0, path/2, 0, fill='grey', width=1)
-	line(cvs, xv, 0, xv + get_F()/5000, 0, fill='blue', width=1, arrow=tk.LAST)
+	line(cvs, xv, 0, xv + get_F()/600, 0, fill='blue', width=1, arrow=tk.LAST)
 	tip = xv + sin(th) * l, cos(th) * l
 	line(cvs, xv, 0, *tip, fill='#a00', width=2.5)
 	line(cvs, xv, 0, *tip, fill='#f00', width=2)
@@ -37,9 +37,11 @@ def draw(parent, cvs, xv, th, l):
 
 if __name__ == '__main__':
 	x = threading.Thread(target=run)
+	y = threading.Thread(target=run_server)
 	x.start()
+	y.start()
 
-	width, height = 800, 800
+	width, height = 800, 300
 	parent, canvas, start = create_canvas(width, height)
 
 	# Center at (width/2, l * scale)
@@ -53,4 +55,5 @@ if __name__ == '__main__':
 	start()
 	terminate()
 	x.join()
+	y.join()
 

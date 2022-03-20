@@ -13,7 +13,7 @@ class Controlador:
 	def __init__(self, ell=7, dt=0.1):
 		self.ell = ell
 		self.F = 0
-		self.Kp = 18300.84
+		self.Kp = 18300.84/100
 		self.Ki = 3072.25
 		self.Kd = 22688.05
 		self.N = 31.53
@@ -24,7 +24,7 @@ class Controlador:
 		self.d2 = 0
 		self.fd = 0
 		self.set_dt(dt)
-		self.setpoint = 0
+		self.setpoint = -5
 
 	def set_ell(self, ell):
 		self.ell = ell
