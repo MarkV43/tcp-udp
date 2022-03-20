@@ -29,7 +29,6 @@ def draw(parent, cvs, xv, th, l):
 	line(cvs, -path/2, 0, path/2, 0, fill='grey', width=1)
 	line(cvs, xv, 0, xv + get_F()/600, 0, fill='blue', width=1, arrow=tk.LAST)
 	tip = xv + sin(th) * l, cos(th) * l
-	line(cvs, xv, 0, *tip, fill='#a00', width=2.5)
 	line(cvs, xv, 0, *tip, fill='#f00', width=2)
 	circle(cvs, *tip, 0.3, fill='#f00')
 	cvs.update()
