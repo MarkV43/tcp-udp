@@ -7,5 +7,5 @@ $$ \ddot x_v = \frac{1}{M + m \sin^2 \theta} \left( m \dot\theta^2 \ell \sin \th
 
 $$ \ddot\theta = - \frac{1}{\ell} \frac{\cos\theta}{M + m \sin^2 \theta} \left( m \dot\theta^2 \ell \sin \theta + m \cos \theta \left( g \sin \theta + \frac{b \dot\theta}{m \ell} \right) + F(t) - d \dot x_v \right) - \frac{g \sin \theta}{\ell} - \frac{b \dot\theta}{m \ell^2} $$
 
-Para rodar o simulador você precisa da biblioteca `p5` do Python.
-Para instalá-la, siga [as intruções](https://p5.readthedocs.io/en/latest/install.html).
+Para rodar o simulador você precisa da biblioteca `tkinter` do Python.
+Para instalá-la, rode o comando `pip install tk`.

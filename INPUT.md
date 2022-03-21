@@ -15,9 +15,8 @@ Um trabalho para a disciplina de _Redes de Computadores para Automação_ desenv
 
 O trabalho, implementado em Python, consiste de 3 estações (um simulador, um controlador e um painel de controle) que comunicam entre si.
 O painel de controle envia através de TCP, dados para alteração de parâmetros de controle no controlador.
-O controlador consiste de um sistema de controle discreto que interage com o simulador via UDP, enviando o estado atual ao painel de controle.
-O painel de controle, sendo atualizado disso, apresenta visualmente em forma de gráficos, ao usuário, esses dados.
-O simulador mostra uma representação fiel do sistema real ao usuário.
+O controlador consiste de um sistema de controle discreto que interage com o simulador via UDP.
+O simulador mostra uma representação fiel do sistema real ao usuário, e envia através de UDP também, o estado atual para o controlador.
 
 ## O processo
 
@@ -50,4 +49,15 @@ $\dot f$ Primeira derivada de $f$ no tempo
 
 $\ddot f$ Segunda derivada de $f$ no tempo
 
-###
+# Execução
+
+## Pré-requisitos
+
+Você precisará da biblioteca `tkinter`. Para instalá-la, basta executar `pip install tk`
+
+Para executar o projeto você precisará de três janelas de comando.
+Na primeira, execute `python simulador/main.py`.
+Na segunda, execute `python controlador/main.py`.
+Na terceira, execute `python panel/main.py`.
+
+Na terceira janela você pode digitar números para alterar o valor e referência.

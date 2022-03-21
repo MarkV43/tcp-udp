@@ -13,10 +13,10 @@ Um trabalho para a disciplina de _Redes de Computadores para Automação_ desenv
 
 ## Definição
 
-O trabalho, implementado em Python, consiste de 2 estações (um controlador e um painel de controle) que comunicam entre si.
-O painel de controle envia através de TCP dados para alteração de parâmetros de controle no controlador.
-O controlador consiste de um simulador de um processo (dado que não temos o sistema físico em si) e de um sistema de controle discreto que interage dado processo, enviando o estado atual ao painel de controle via UDP.
-O painel de controle, sendo atualizado disso, apresenta visualmente, tanto uma representação fiel do sistema, quanto em forma de gráficos, ao usuário, esses dados.
+O trabalho, implementado em Python, consiste de 3 estações (um simulador, um controlador e um painel de controle) que comunicam entre si.
+O painel de controle envia através de TCP, dados para alteração de parâmetros de controle no controlador.
+O controlador consiste de um sistema de controle discreto que interage com o simulador via UDP.
+O simulador mostra uma representação fiel do sistema real ao usuário, e envia através de UDP também, o estado atual para o controlador.
 
 ## O processo
 
@@ -48,3 +48,16 @@ O processo físico consiste de uma ponte rolante uniaxial.
 <img src="svgs/100f3b1bc4e9452f6562e800febf5c60.svg?invert_in_darkmode" align=middle width=9.93164039999999pt height=30.632847300000012pt/> Primeira derivada de <img src="svgs/190083ef7a1625fbc75f243cffb9c96d.svg?invert_in_darkmode" align=middle width=9.81741584999999pt height=22.831056599999986pt/> no tempo
 
 <img src="svgs/3a0328249aa81733bf44a7d91ba2e0b9.svg?invert_in_darkmode" align=middle width=11.75813594999999pt height=30.632847300000012pt/> Segunda derivada de <img src="svgs/190083ef7a1625fbc75f243cffb9c96d.svg?invert_in_darkmode" align=middle width=9.81741584999999pt height=22.831056599999986pt/> no tempo
+
+# Execução
+
+## Pré-requisitos
+
+Você precisará da biblioteca `tkinter`. Para instalá-la, basta executar `pip install tk`
+
+Para executar o projeto você precisará de três janelas de comando.
+Na primeira, execute `python simulador/main.py`.
+Na segunda, execute `python controlador/main.py`.
+Na terceira, execute `python panel/main.py`.
+
+Na terceira janela você pode digitar números para alterar o valor e referência.
