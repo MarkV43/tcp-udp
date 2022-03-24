@@ -58,10 +58,10 @@ class Controlador:
 		self.e1 = e
 
 		# Saturate signal
-		if self.F > 2000:
-			self.F = 2000
-		elif self.F < -2000:
-			self.F = -2000
+		if self.F > 44100:
+			self.F = 44100
+		elif self.F < -44100:
+			self.F = -44100
 
 		return self.F
 
